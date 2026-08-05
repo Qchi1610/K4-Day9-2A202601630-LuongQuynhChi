@@ -21,12 +21,12 @@
       "b69321fb7d3000994c5a2b55c4f3cb01:2"
     ],
     "seller_ids": [
-      "d20b021d3efdf267a402c402a48ea64b",
-      "4a3ca9315b744ce9f8e9374361493884"
+      "4a3ca9315b744ce9f8e9374361493884",
+      "d20b021d3efdf267a402c402a48ea64b"
     ],
     "payment_ids": [
-      "b69321fb7d3000994c5a2b55c4f3cb01:2",
-      "b69321fb7d3000994c5a2b55c4f3cb01:1"
+      "b69321fb7d3000994c5a2b55c4f3cb01:1",
+      "b69321fb7d3000994c5a2b55c4f3cb01:2"
     ]
   },
   "customer_context": {
@@ -75,8 +75,8 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "credit_card",
-      "voucher"
+      "voucher",
+      "credit_card"
     ]
   },
   "root_cause_analysis": {
@@ -97,8 +97,8 @@
     "order:b69321fb7d3000994c5a2b55c4f3cb01",
     "item:b69321fb7d3000994c5a2b55c4f3cb01:1",
     "item:b69321fb7d3000994c5a2b55c4f3cb01:2",
-    "payment:b69321fb7d3000994c5a2b55c4f3cb01:2",
     "payment:b69321fb7d3000994c5a2b55c4f3cb01:1",
+    "payment:b69321fb7d3000994c5a2b55c4f3cb01:2",
     "policy:MULTIPLE_PAYMENTS_RECONCILED"
   ],
   "financial_resolution": {

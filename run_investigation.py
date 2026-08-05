@@ -4,6 +4,7 @@ import glob
 import json
 import os
 import sys
+from typing import Optional
 
 # Ensure backend package is in python path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "backend"))
@@ -101,12 +102,16 @@ class MultiAgentOlistInvestigator:
         item_rows = self.items_by_order.get(claimed_order_id, [])
         payment_rows = self.payments_by_order.get(claimed_order_id, [])
 
+        # Sort item_rows and payment_rows for deterministic sequence ordering (:1, :2)
+        sorted_item_rows = sorted(item_rows, key=lambda x: int(x.get("order_item_id", 0))) if item_rows else []
+        sorted_payment_rows = sorted(payment_rows, key=lambda x: int(x.get("payment_sequential", 0))) if payment_rows else []
+
         # Build Domain Agent Contexts
         agent_context = {
             "claimed_order_id": claimed_order_id,
             "order_row": order_row,
-            "item_rows": item_rows,
-            "payment_rows": payment_rows,
+            "item_rows": sorted_item_rows,
+            "payment_rows": sorted_payment_rows,
             "cust_unique_id": cust_unique_id,
             "related_orders": related_orders,
             "products_by_id": self.products_by_id,
@@ -144,9 +149,9 @@ class MultiAgentOlistInvestigator:
             "case_assessment": policy_meta.get("case_assessment", {}),
             "affected_entities": {
                 "order_ids": [claimed_order_id][:5],
-                "item_ids": [f"{claimed_order_id}:{r.get('order_item_id')}" for r in item_rows][:5],
+                "item_ids": [f"{claimed_order_id}:{r.get('order_item_id')}" for r in sorted_item_rows][:5],
                 "seller_ids": cust_prod_res.metadata.get("seller_ids", [])[:3],
-                "payment_ids": [f"{claimed_order_id}:{r.get('payment_sequential')}" for r in payment_rows][:5],
+                "payment_ids": [f"{claimed_order_id}:{r.get('payment_sequential')}" for r in sorted_payment_rows][:5],
             },
             "customer_context": cust_prod_res.metadata.get("customer_context", {}),
             "product_context": cust_prod_res.metadata.get("product_context", {}),
