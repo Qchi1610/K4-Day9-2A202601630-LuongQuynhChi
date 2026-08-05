@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List
 from pydantic import BaseModel, Field
 
@@ -9,4 +9,4 @@ class LearningProgressModel(BaseModel):
     completed_topics: List[str] = Field(default_factory=list)
     quiz_scores: List[dict] = Field(default_factory=list)
     next_recommended_lessons: List[str] = Field(default_factory=list)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
 
@@ -16,4 +16,4 @@ class ChatLogModel(BaseModel):
     cost: float = 0.0
     retrieved_documents: List[str] = Field(default_factory=list)
     tool_calls: List[str] = Field(default_factory=list)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

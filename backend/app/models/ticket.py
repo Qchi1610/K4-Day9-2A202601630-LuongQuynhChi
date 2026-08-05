@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional
 from pydantic import BaseModel, Field
 
@@ -13,4 +13,4 @@ class TicketModel(BaseModel):
     priority: str = "medium"  # low, medium, high, critical
     required_screenshots: List[str] = Field(default_factory=list)
     status: str = "open"  # open, in_progress, resolved
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

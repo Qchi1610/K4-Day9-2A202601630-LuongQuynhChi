@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from app.models.session import SessionModel
 from app.services.database.repositories import session_repo
@@ -16,8 +16,8 @@ class SessionMemoryManager:
                 session_id=session_id,
                 user_id=user_id,
                 user_role=user_role,
-                created_at=datetime.utcnow(),
-                updated_at=datetime.utcnow(),
+                created_at=datetime.now(timezone.utc),
+                updated_at=datetime.now(timezone.utc),
             )
             await session_repo.insert(session)
         return session
@@ -45,7 +45,7 @@ class SessionMemoryManager:
         if current_workflow:
             session.current_workflow = current_workflow
 
-        session.updated_at = datetime.utcnow()
+        session.updated_at = datetime.now(timezone.utc)
         await session_repo.insert(session)
         return session
 
