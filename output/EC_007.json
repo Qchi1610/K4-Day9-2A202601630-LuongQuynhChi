@@ -32,12 +32,12 @@
   },
   "product_context": {
     "product_ids": [
-      "a0b7d5a992ccda646f2d34e418fff5a0",
-      "a4fa3b8fa5953b0bd18bf4e0b4de499d"
+      "a4fa3b8fa5953b0bd18bf4e0b4de499d",
+      "a0b7d5a992ccda646f2d34e418fff5a0"
     ],
     "category_names": [
-      "moveis_decoracao",
-      "cama_mesa_banho"
+      "cama_mesa_banho",
+      "moveis_decoracao"
     ]
   },
   "delivery_analysis": {
