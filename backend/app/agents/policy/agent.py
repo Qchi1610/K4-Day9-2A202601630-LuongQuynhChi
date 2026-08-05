@@ -2,6 +2,7 @@ import json
 import os
 from typing import Any, Dict, Optional
 from app.agents.base import AgentMetadata, AgentResponse, BaseAgent
+from app.services.llm.factory import LLMFactory
 
 
 class PolicyDecisionAgent(BaseAgent):
@@ -53,6 +54,22 @@ class PolicyDecisionAgent(BaseAgent):
         late_handoff_seller_ids = delivery.get("late_handoff_seller_ids", [])
         reconciled = payment.get("reconciled")
         freight_total_brl = payment.get("freight_total_brl", 0.0)
+
+        # Execute NVIDIA LLM API call for AI Policy Synthesis
+        llm_reasoning = ""
+        try:
+            llm = LLMFactory.get_provider()
+            llm_prompt = (
+                f"Dispute Case '{claimed_order_id}':\n"
+                f"Status={order_status}, Late={is_delivered_late}, LateSellers={late_handoff_seller_ids}, "
+                f"Payment={payment_total_brl} BRL, Freight={freight_total_brl} BRL, Reconciled={reconciled}.\n"
+                f"Provide concise policy synthesis."
+            )
+            llm_reasoning = await llm.generate(prompt=llm_prompt, system_prompt=self.prompt_template, max_tokens=150)
+            if llm_reasoning:
+                print(f"   [NVIDIA AI Agent Policy Audit - Case {claimed_order_id}]: {llm_reasoning[:70]}...")
+        except Exception as e:
+            llm_reasoning = f"Zero-Trust Policy Audit: {e}"
 
         # Primary Issue Assessment according to EC_POLICY_V2 priority order (Zero-Trust Data Verification)
         primary_issue = "unsupported_late_claim"

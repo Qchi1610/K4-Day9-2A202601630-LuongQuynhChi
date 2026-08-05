@@ -37,12 +37,12 @@
   },
   "product_context": {
     "product_ids": [
-      "8adde8ed66e628e94f29b9832156ab08",
-      "b7605b5b483063d12bd90a772bff9d21"
+      "b7605b5b483063d12bd90a772bff9d21",
+      "8adde8ed66e628e94f29b9832156ab08"
     ],
     "category_names": [
-      "moveis_decoracao",
-      "cama_mesa_banho"
+      "cama_mesa_banho",
+      "moveis_decoracao"
     ]
   },
   "delivery_analysis": {
@@ -75,8 +75,8 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "credit_card",
-      "voucher"
+      "voucher",
+      "credit_card"
     ]
   },
   "root_cause_analysis": {

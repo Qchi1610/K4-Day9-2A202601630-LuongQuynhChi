@@ -189,22 +189,25 @@ class MultiAgentOlistInvestigator:
             print(f"No JSON input files found in '{input_dir}'.")
             return
 
-        print(f"Executing Multi-Agent system on {len(input_files)} case files matching README schema...")
+        print(f"Executing Multi-Agent system with NVIDIA LLM API on {len(input_files)} case files...")
 
-        for file_path in input_files:
-            filename = os.path.basename(file_path)
-            output_path = os.path.join(output_dir, filename)
+        sem = asyncio.Semaphore(5)
 
-            try:
-                result = await self.process_case_multi_agent(file_path)
-                if result:
-                    with open(output_path, "w", encoding="utf-8") as f:
-                        json.dump(result, f, ensure_ascii=False, indent=2)
-                    print(f"[OK] Generated {output_path}")
-            except Exception as e:
-                print(f"[FAILED] Processing {filename}: {e}")
+        async def process_single(file_path):
+            async with sem:
+                filename = os.path.basename(file_path)
+                output_path = os.path.join(output_dir, filename)
+                try:
+                    result = await self.process_case_multi_agent(file_path)
+                    if result:
+                        with open(output_path, "w", encoding="utf-8") as f:
+                            json.dump(result, f, ensure_ascii=False, indent=2)
+                        print(f"[OK] Generated {output_path}")
+                except Exception as e:
+                    print(f"[FAILED] Processing {filename}: {e}")
 
-        print("Finished processing all dispute cases with Multi-Agent Architecture.")
+        await asyncio.gather(*[process_single(f) for f in input_files])
+        print("Finished processing all dispute cases with Multi-Agent Architecture & NVIDIA LLM API.")
 
 
 if __name__ == "__main__":
