@@ -1,6 +1,6 @@
 {
-  "model": "qwen/qwen-2.5-7b-instruct",
-  "parameter_size": "7B",
+  "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+  "parameter_size": "9B",
   "framework": "FastAPI Multi-Agent Architecture",
   "runtime": "Python 3.11+ / AsyncIO",
   "max_allowed_parameters": "10B",
@@ -14,62 +14,62 @@
   "agents": [
     {
       "name": "CoordinatorAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Supervisor & Dynamic Agent Orchestrator"
     },
     {
       "name": "OrderDeliveryAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Domain Agent: Order Status, Carrier Handoff & Delivery Timelines"
     },
     {
       "name": "PaymentReconciliationAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Domain Agent: Payment Reconciliation & Split Payment Audit"
     },
     {
       "name": "CustomerProductAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Domain Agent: Customer Repeat Order History & Product Categories"
     },
     {
       "name": "PolicyDecisionAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Domain Agent: EC_POLICY_V2 Rules & Evidence Handoff Decisioning"
     },
     {
       "name": "KnowledgeAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "RAG Semantic Search & Citations"
     },
     {
       "name": "WorkflowAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Procedural Workflows & Mermaid Process Diagrams"
     },
     {
       "name": "LearningAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Personalized Roadmaps & Quizzes"
     },
     {
       "name": "TroubleshootingAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Operational Fault Diagnostics"
     },
     {
       "name": "TicketAgent",
-      "model": "qwen/qwen-2.5-7b-instruct",
-      "parameter_size": "7B",
+      "model": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "parameter_size": "9B",
       "role": "Support Ticket Generation"
     }
   ]

@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Mandatory Rule: Model name MUST be explicitly declared in source code (<= 10B parameters)
 # and NOT loaded from .env file.
-CONSTANT_MODEL_NAME: str = "qwen/qwen-2.5-7b-instruct"  # 7B parameters <= 10B limit
+CONSTANT_MODEL_NAME: str = "nvidia/nvidia-nemotron-nano-9b-v2"  # 9B parameters <= 10B limit
 CONSTANT_EMBEDDING_MODEL: str = "text-embedding-3-small"
 
 
@@ -32,9 +32,10 @@ class Settings(BaseSettings):
     MONGODB_DB_NAME: str = "onboarding_db"
 
     # LLM Configuration
-    LLM_PROVIDER: Literal["openai", "openrouter", "ollama"] = "openai"
+    LLM_PROVIDER: Literal["openai", "openrouter", "openroute", "ollama", "nvidia"] = "openrouter"
     OPENAI_API_KEY: Optional[str] = None
     OPENROUTER_API_KEY: Optional[str] = None
+    NVIDIA_API_KEY: Optional[str] = None
     OLLAMA_BASE_URL: str = "http://localhost:11434"
 
     # Fixed <= 10B Model constant (Not loaded from .env)

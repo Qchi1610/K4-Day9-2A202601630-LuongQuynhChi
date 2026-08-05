@@ -5,6 +5,7 @@ from app.services.llm.base import BaseLLMProvider
 from app.services.llm.openai_provider import OpenAIProvider
 from app.services.llm.openrouter_provider import OpenRouterProvider
 from app.services.llm.ollama_provider import OllamaProvider
+from app.services.llm.nvidia_provider import NVIDIAProvider
 
 
 class LLMFactory:
@@ -21,13 +22,15 @@ class LLMFactory:
 
         if target_provider == "openai":
             cls._instance = OpenAIProvider()
-        elif target_provider == "openrouter":
+        elif target_provider in ["openrouter", "openroute"]:
             cls._instance = OpenRouterProvider()
         elif target_provider == "ollama":
             cls._instance = OllamaProvider()
+        elif target_provider == "nvidia":
+            cls._instance = NVIDIAProvider()
         else:
             raise LLMProviderException(
-                target_provider, f"Unsupported LLM provider '{target_provider}'. Supported: ['openai', 'openrouter', 'ollama']"
+                target_provider, f"Unsupported LLM provider '{target_provider}'. Supported: ['openai', 'openrouter', 'ollama', 'nvidia']"
             )
 
         return cls._instance
