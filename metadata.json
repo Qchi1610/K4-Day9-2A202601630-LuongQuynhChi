@@ -1,0 +1,50 @@
+{
+  "model": "qwen/qwen-2.5-7b-instruct",
+  "parameter_size": "7B",
+  "framework": "FastAPI Multi-Agent Architecture",
+  "runtime": "Python 3.11+ / AsyncIO",
+  "max_allowed_parameters": "10B",
+  "compliance": {
+    "under_10b_limit": true,
+    "declared_in_source_code": true,
+    "excluded_from_env": true
+  },
+  "agents": [
+    {
+      "name": "CoordinatorAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Supervisor & Dynamic Intent Router"
+    },
+    {
+      "name": "KnowledgeAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "RAG Semantic Search & Citations"
+    },
+    {
+      "name": "WorkflowAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Procedural Workflows & Mermaid Process Diagrams"
+    },
+    {
+      "name": "LearningAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Personalized Roadmaps & Quizzes"
+    },
+    {
+      "name": "TroubleshootingAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Operational Fault Diagnostics"
+    },
+    {
+      "name": "TicketAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Support Ticket Generation"
+    }
+  ]
+}
