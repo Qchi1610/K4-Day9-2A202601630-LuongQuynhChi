@@ -7,14 +7,40 @@
   "compliance": {
     "under_10b_limit": true,
     "declared_in_source_code": true,
-    "excluded_from_env": true
+    "excluded_from_env": true,
+    "multi_agent_system": true,
+    "no_hardcoding": true
   },
   "agents": [
     {
       "name": "CoordinatorAgent",
       "model": "qwen/qwen-2.5-7b-instruct",
       "parameter_size": "7B",
-      "role": "Supervisor & Dynamic Intent Router"
+      "role": "Supervisor & Dynamic Agent Orchestrator"
+    },
+    {
+      "name": "OrderDeliveryAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Domain Agent: Order Status, Carrier Handoff & Delivery Timelines"
+    },
+    {
+      "name": "PaymentReconciliationAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Domain Agent: Payment Reconciliation & Split Payment Audit"
+    },
+    {
+      "name": "CustomerProductAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Domain Agent: Customer Repeat Order History & Product Categories"
+    },
+    {
+      "name": "PolicyDecisionAgent",
+      "model": "qwen/qwen-2.5-7b-instruct",
+      "parameter_size": "7B",
+      "role": "Domain Agent: EC_POLICY_V2 Rules & Evidence Handoff Decisioning"
     },
     {
       "name": "KnowledgeAgent",
