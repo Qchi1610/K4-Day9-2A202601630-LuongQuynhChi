@@ -6,7 +6,7 @@
       "multi_item_order",
       "repeat_customer"
     ],
-    "case_status": "resolved",
+    "case_status": "no_action",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -95,10 +95,9 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 0.0,
-    "refund_type": "reject_late_refund"
+    "recommended_refund_brl": 0.0
   },
-  "recommended_actions": [
+  "resolution_actions": [
     "reject_late_refund"
   ]
 }

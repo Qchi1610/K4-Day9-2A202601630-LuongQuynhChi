@@ -37,7 +37,7 @@
     ]
   },
   "delivery_analysis": {
-    "delivered_at": "",
+    "delivered_at": null,
     "estimated_delivery_at": "2018-03-15 00:00:00",
     "carrier_handoff_at": "2018-02-20 18:58:43",
     "delivery_variance_hours": 0.0,
@@ -85,10 +85,10 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 79.56,
-    "refund_type": "issue_full_refund"
+    "recommended_refund_brl": 79.56
   },
-  "recommended_actions": [
-    "issue_full_refund"
+  "resolution_actions": [
+    "issue_full_refund",
+    "verify_refund_completion"
   ]
 }

@@ -30,12 +30,12 @@
   },
   "product_context": {
     "product_ids": [
-      "a7906a8a69acf5b0cb256882e741896a",
-      "197f7d1d3a8b0bf0c8f0394ff71b574b"
+      "197f7d1d3a8b0bf0c8f0394ff71b574b",
+      "a7906a8a69acf5b0cb256882e741896a"
     ],
     "category_names": [
-      "esporte_lazer",
-      "construcao_ferramentas_iluminacao"
+      "construcao_ferramentas_iluminacao",
+      "esporte_lazer"
     ]
   },
   "delivery_analysis": {
@@ -97,10 +97,11 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 31.64,
-    "refund_type": "refund_freight"
+    "recommended_refund_brl": 31.64
   },
-  "recommended_actions": [
-    "refund_freight"
+  "resolution_actions": [
+    "refund_freight",
+    "review_seller_handoff",
+    "verify_refund_completion"
   ]
 }

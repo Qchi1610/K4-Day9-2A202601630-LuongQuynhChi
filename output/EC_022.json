@@ -7,7 +7,7 @@
       "split_payment",
       "repeat_customer"
     ],
-    "case_status": "resolved",
+    "case_status": "no_action",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -84,8 +84,8 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "voucher",
-      "credit_card"
+      "credit_card",
+      "voucher"
     ]
   },
   "root_cause_analysis": {
@@ -114,10 +114,9 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 0.0,
-    "refund_type": "explain_valid_split_payment"
+    "recommended_refund_brl": 0.0
   },
-  "recommended_actions": [
+  "resolution_actions": [
     "explain_valid_split_payment"
   ]
 }

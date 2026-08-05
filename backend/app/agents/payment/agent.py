@@ -57,7 +57,6 @@ class PaymentReconciliationAgent(BaseAgent):
             "difference_brl": difference_brl,
             "reconciled": reconciled,
             "payment_types": payment_types,
-            "payment_count": len(payment_rows),
         }
 
         return AgentResponse(

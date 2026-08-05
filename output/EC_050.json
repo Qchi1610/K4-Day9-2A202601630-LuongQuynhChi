@@ -7,7 +7,7 @@
       "multi_seller_order",
       "multiple_categories"
     ],
-    "case_status": "resolved",
+    "case_status": "no_action",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -19,8 +19,8 @@
       "370098d35ccd8a2af86b57c81ac7d24f:2"
     ],
     "seller_ids": [
-      "b90e891671cffd9557f33a97dc523645",
-      "55dedd83e501d8248880557d9073cbfd"
+      "55dedd83e501d8248880557d9073cbfd",
+      "b90e891671cffd9557f33a97dc523645"
     ],
     "payment_ids": [
       "370098d35ccd8a2af86b57c81ac7d24f:1"
@@ -96,10 +96,10 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 0.0,
-    "refund_type": "reject_late_refund"
+    "recommended_refund_brl": 0.0
   },
-  "recommended_actions": [
-    "reject_late_refund"
+  "resolution_actions": [
+    "reject_late_refund",
+    "coordinate_multi_seller_case"
   ]
 }

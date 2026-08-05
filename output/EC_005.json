@@ -31,8 +31,8 @@
   },
   "product_context": {
     "product_ids": [
-      "c686d4fd1e845efd1b98db8220f0af3b",
-      "5b2b72f58d212a6e4733884ef0ece564"
+      "5b2b72f58d212a6e4733884ef0ece564",
+      "c686d4fd1e845efd1b98db8220f0af3b"
     ],
     "category_names": [
       "cama_mesa_banho"
@@ -94,10 +94,12 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 32.75,
-    "refund_type": "refund_freight"
+    "recommended_refund_brl": 32.75
   },
-  "recommended_actions": [
-    "refund_freight"
+  "resolution_actions": [
+    "refund_freight",
+    "review_carrier_delay",
+    "verify_refund_completion",
+    "coordinate_multi_seller_case"
   ]
 }

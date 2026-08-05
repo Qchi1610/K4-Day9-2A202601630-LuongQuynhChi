@@ -31,8 +31,8 @@
   },
   "product_context": {
     "product_ids": [
-      "01bc2a3c12d6e588aecb54ffad194c13",
-      "ce066f4a83649651549d717c9b566816"
+      "ce066f4a83649651549d717c9b566816",
+      "01bc2a3c12d6e588aecb54ffad194c13"
     ],
     "category_names": [
       "esporte_lazer"
@@ -70,8 +70,8 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "voucher",
-      "credit_card"
+      "credit_card",
+      "voucher"
     ]
   },
   "root_cause_analysis": {
@@ -99,10 +99,12 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 48.14,
-    "refund_type": "refund_freight"
+    "recommended_refund_brl": 48.14
   },
-  "recommended_actions": [
-    "refund_freight"
+  "resolution_actions": [
+    "refund_freight",
+    "review_seller_handoff",
+    "verify_refund_completion",
+    "verify_payment_allocation"
   ]
 }

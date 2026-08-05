@@ -7,7 +7,7 @@
       "multi_seller_order",
       "split_payment"
     ],
-    "case_status": "resolved",
+    "case_status": "no_action",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -19,8 +19,8 @@
       "614bc59c7d5e038587336616e3198e33:2"
     ],
     "seller_ids": [
-      "30a2f535bb48308f991d0b9ad4a8c4bb",
-      "7e3f87d16fb353f408d467e74fbd8014"
+      "7e3f87d16fb353f408d467e74fbd8014",
+      "30a2f535bb48308f991d0b9ad4a8c4bb"
     ],
     "payment_ids": [
       "614bc59c7d5e038587336616e3198e33:1",
@@ -70,8 +70,8 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "voucher",
-      "credit_card"
+      "credit_card",
+      "voucher"
     ]
   },
   "root_cause_analysis": {
@@ -98,10 +98,10 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 0.0,
-    "refund_type": "explain_valid_split_payment"
+    "recommended_refund_brl": 0.0
   },
-  "recommended_actions": [
-    "explain_valid_split_payment"
+  "resolution_actions": [
+    "explain_valid_split_payment",
+    "coordinate_multi_seller_case"
   ]
 }

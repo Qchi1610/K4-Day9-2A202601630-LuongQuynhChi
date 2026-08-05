@@ -5,7 +5,7 @@ from app.agents.base import AgentMetadata, AgentResponse, BaseAgent
 
 
 def parse_dt(dt_str):
-    if not dt_str or not str(dt_str).strip():
+    if not dt_str or str(dt_str).strip() == "":
         return None
     try:
         return datetime.strptime(str(dt_str).strip(), "%Y-%m-%d %H:%M:%S")
@@ -23,7 +23,7 @@ def calculate_hours_diff(dt1, dt2):
 
 
 class OrderDeliveryAgent(BaseAgent):
-    """Domain Agent: Analyzes order status, delivery timelines, carrier handoff, and seller shipping limits."""
+    """Domain Agent: Analyzes order status, delivery timelines, carrier handoffs, and seller shipping limits."""
 
     @property
     def metadata(self) -> AgentMetadata:
@@ -52,9 +52,14 @@ class OrderDeliveryAgent(BaseAgent):
         item_rows = context.get("item_rows", [])
 
         order_status = (order_row.get("order_status") or "").lower()
-        delivered_at_dt = parse_dt(order_row.get("order_delivered_customer_date"))
-        estimated_dt = parse_dt(order_row.get("order_estimated_delivery_date"))
-        carrier_dt = parse_dt(order_row.get("order_delivered_carrier_date"))
+        
+        delivered_at_str = order_row.get("order_delivered_customer_date")
+        estimated_delivery_str = order_row.get("order_estimated_delivery_date")
+        carrier_handoff_str = order_row.get("order_delivered_carrier_date")
+
+        delivered_at_dt = parse_dt(delivered_at_str)
+        estimated_dt = parse_dt(estimated_delivery_str)
+        carrier_dt = parse_dt(carrier_handoff_str)
 
         delivery_variance_hours = (
             calculate_hours_diff(delivered_at_dt, estimated_dt) if (delivered_at_dt and estimated_dt) else 0.0
@@ -66,7 +71,8 @@ class OrderDeliveryAgent(BaseAgent):
         if item_rows:
             for row in item_rows:
                 s_id = row.get("seller_id", "")
-                ship_limit_dt = parse_dt(row.get("shipping_limit_date"))
+                ship_limit_str = row.get("shipping_limit_date")
+                ship_limit_dt = parse_dt(ship_limit_str)
                 late = False
                 h_variance = 0.0
                 if carrier_dt and ship_limit_dt:
@@ -78,7 +84,7 @@ class OrderDeliveryAgent(BaseAgent):
 
                 seller_handoff_analysis.append({
                     "seller_id": s_id,
-                    "shipping_limit_at": row.get("shipping_limit_date", ""),
+                    "shipping_limit_at": str(ship_limit_str) if ship_limit_str else None,
                     "handoff_variance_hours": h_variance,
                     "late_handoff": late,
                 })
@@ -89,12 +95,12 @@ class OrderDeliveryAgent(BaseAgent):
 
         delivery_analysis = {
             "order_status": order_status,
-            "delivered_at": order_row.get("order_delivered_customer_date", ""),
-            "estimated_delivery_at": order_row.get("order_estimated_delivery_date", ""),
-            "carrier_handoff_at": order_row.get("order_delivered_carrier_date", ""),
+            "delivered_at": str(delivered_at_str) if (delivered_at_str and str(delivered_at_str).strip() != "") else None,
+            "estimated_delivery_at": str(estimated_delivery_str) if (estimated_delivery_str and str(estimated_delivery_str).strip() != "") else None,
+            "carrier_handoff_at": str(carrier_handoff_str) if (carrier_handoff_str and str(carrier_handoff_str).strip() != "") else None,
             "delivery_variance_hours": delivery_variance_hours,
             "seller_handoff_analysis": seller_handoff_analysis,
-            "late_handoff_seller_ids": late_handoff_seller_ids,
+            "late_handoff_seller_ids": late_handoff_seller_ids[:3],  # max 3 sellers
             "is_delivered_late": is_delivered_late,
         }
 

@@ -94,10 +94,11 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 30.38,
-    "refund_type": "refund_freight"
+    "recommended_refund_brl": 30.38
   },
-  "recommended_actions": [
-    "refund_freight"
+  "resolution_actions": [
+    "refund_freight",
+    "review_carrier_delay",
+    "verify_refund_completion"
   ]
 }

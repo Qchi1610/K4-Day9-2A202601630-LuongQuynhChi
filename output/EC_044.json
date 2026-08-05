@@ -6,7 +6,7 @@
       "multi_item_order",
       "multi_seller_order"
     ],
-    "case_status": "resolved",
+    "case_status": "no_action",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -18,8 +18,8 @@
       "a833e4af2b4c893929b9f3adce3ecbeb:2"
     ],
     "seller_ids": [
-      "2b3b9ce054da76a7428df143a567b156",
-      "624f4ece8da4aafb77699233d480f8ef"
+      "624f4ece8da4aafb77699233d480f8ef",
+      "2b3b9ce054da76a7428df143a567b156"
     ],
     "payment_ids": [
       "a833e4af2b4c893929b9f3adce3ecbeb:1"
@@ -31,8 +31,8 @@
   },
   "product_context": {
     "product_ids": [
-      "9474f3c0da0c4fd0bdf88cf6ac1b5d04",
-      "817e1c2d22418c36386406ccacfa53e8"
+      "817e1c2d22418c36386406ccacfa53e8",
+      "9474f3c0da0c4fd0bdf88cf6ac1b5d04"
     ],
     "category_names": [
       "moveis_decoracao"
@@ -94,10 +94,10 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 0.0,
-    "refund_type": "reject_late_refund"
+    "recommended_refund_brl": 0.0
   },
-  "recommended_actions": [
-    "reject_late_refund"
+  "resolution_actions": [
+    "reject_late_refund",
+    "coordinate_multi_seller_case"
   ]
 }

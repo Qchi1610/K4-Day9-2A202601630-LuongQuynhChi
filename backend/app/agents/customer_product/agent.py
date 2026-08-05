@@ -47,13 +47,13 @@ class CustomerProductAgent(BaseAgent):
         payload = {
             "customer_context": {
                 "customer_unique_id": cust_unique_id,
-                "related_order_ids": related_orders,
+                "related_order_ids": related_orders[:5],  # max 5
             },
             "product_context": {
-                "product_ids": product_ids,
-                "category_names": category_names,
+                "product_ids": product_ids[:5],  # max 5
+                "category_names": category_names[:5],  # max 5
             },
-            "seller_ids": seller_ids,
+            "seller_ids": seller_ids[:3],  # max 3
         }
 
         return AgentResponse(

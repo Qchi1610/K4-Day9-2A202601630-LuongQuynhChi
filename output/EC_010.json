@@ -7,7 +7,7 @@
       "multi_seller_order",
       "split_payment"
     ],
-    "case_status": "resolved",
+    "case_status": "no_action",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -97,10 +97,10 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "refund_amount_brl": 0.0,
-    "refund_type": "explain_valid_split_payment"
+    "recommended_refund_brl": 0.0
   },
-  "recommended_actions": [
-    "explain_valid_split_payment"
+  "resolution_actions": [
+    "explain_valid_split_payment",
+    "coordinate_multi_seller_case"
   ]
 }

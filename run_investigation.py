@@ -13,7 +13,7 @@ from app.agents.registry import AgentRegistry
 
 
 class MultiAgentOlistInvestigator:
-    """Multi-Agent System Manager for Olist Dispute Resolution."""
+    """Multi-Agent System Manager for Olist Dispute Resolution matching README schema."""
 
     def __init__(self, data_dir="./data"):
         self.data_dir = data_dir
@@ -138,22 +138,22 @@ class MultiAgentOlistInvestigator:
         policy_res = await policy_agent.execute(query="evaluate EC_POLICY_V2 decision", context=handoff_context)
         policy_meta = policy_res.metadata
 
-        # Construct Unified Case Output Schema
+        # Construct Output Schema matching README.md exactly
         output_data = {
             "case_id": case_id,
             "case_assessment": policy_meta.get("case_assessment", {}),
             "affected_entities": {
-                "order_ids": [claimed_order_id],
-                "item_ids": [f"{claimed_order_id}:{r.get('order_item_id')}" for r in item_rows],
-                "seller_ids": cust_prod_res.metadata.get("seller_ids", []),
-                "payment_ids": [f"{claimed_order_id}:{r.get('payment_sequential')}" for r in payment_rows],
+                "order_ids": [claimed_order_id][:5],
+                "item_ids": [f"{claimed_order_id}:{r.get('order_item_id')}" for r in item_rows][:5],
+                "seller_ids": cust_prod_res.metadata.get("seller_ids", [])[:3],
+                "payment_ids": [f"{claimed_order_id}:{r.get('payment_sequential')}" for r in payment_rows][:5],
             },
             "customer_context": cust_prod_res.metadata.get("customer_context", {}),
             "product_context": cust_prod_res.metadata.get("product_context", {}),
             "delivery_analysis": {
-                "delivered_at": delivery_res.metadata.get("delivered_at", ""),
-                "estimated_delivery_at": delivery_res.metadata.get("estimated_delivery_at", ""),
-                "carrier_handoff_at": delivery_res.metadata.get("carrier_handoff_at", ""),
+                "delivered_at": delivery_res.metadata.get("delivered_at"),
+                "estimated_delivery_at": delivery_res.metadata.get("estimated_delivery_at"),
+                "carrier_handoff_at": delivery_res.metadata.get("carrier_handoff_at"),
                 "delivery_variance_hours": delivery_res.metadata.get("delivery_variance_hours", 0.0),
                 "seller_handoff_analysis": delivery_res.metadata.get("seller_handoff_analysis", []),
                 "late_handoff_seller_ids": delivery_res.metadata.get("late_handoff_seller_ids", []),
@@ -171,7 +171,7 @@ class MultiAgentOlistInvestigator:
             "root_cause_analysis": policy_meta.get("root_cause_analysis", {}),
             "evidence_ids": policy_res.citations,
             "financial_resolution": policy_meta.get("financial_resolution", {}),
-            "recommended_actions": policy_meta.get("recommended_actions", []),
+            "resolution_actions": policy_meta.get("resolution_actions", []),
         }
 
         return output_data
@@ -184,7 +184,7 @@ class MultiAgentOlistInvestigator:
             print(f"No JSON input files found in '{input_dir}'.")
             return
 
-        print(f"Executing Multi-Agent system on {len(input_files)} case files...")
+        print(f"Executing Multi-Agent system on {len(input_files)} case files matching README schema...")
 
         for file_path in input_files:
             filename = os.path.basename(file_path)
