@@ -19,8 +19,8 @@
       "370098d35ccd8a2af86b57c81ac7d24f:2"
     ],
     "seller_ids": [
-      "b90e891671cffd9557f33a97dc523645",
-      "55dedd83e501d8248880557d9073cbfd"
+      "55dedd83e501d8248880557d9073cbfd",
+      "b90e891671cffd9557f33a97dc523645"
     ],
     "payment_ids": [
       "370098d35ccd8a2af86b57c81ac7d24f:1"
@@ -32,12 +32,12 @@
   },
   "product_context": {
     "product_ids": [
-      "02a0c276d5a252215b48269dea73a6e7",
-      "2527d5ced6628c0e47d84293794bc208"
+      "2527d5ced6628c0e47d84293794bc208",
+      "02a0c276d5a252215b48269dea73a6e7"
     ],
     "category_names": [
-      "esporte_lazer",
-      "beleza_saude"
+      "beleza_saude",
+      "esporte_lazer"
     ]
   },
   "delivery_analysis": {

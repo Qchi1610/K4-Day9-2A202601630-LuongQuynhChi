@@ -1,16 +1,27 @@
 import json
+import os
 from typing import Any, Dict, Optional
 from app.agents.base import AgentMetadata, AgentResponse, BaseAgent
 
 
 class PolicyDecisionAgent(BaseAgent):
-    """Domain Agent: Applies EC_POLICY_V2 rules on evidence handoffs to issue final dispute decisions."""
+    """Domain Agent: Applies EC_POLICY_V2 rules on evidence handoffs under Zero-Trust Data Verification Policy."""
+
+    def __init__(self):
+        self.prompt_template = self._load_prompt()
+
+    def _load_prompt(self) -> str:
+        prompt_path = os.path.join(os.path.dirname(__file__), "..", "..", "prompts", "policy.md")
+        if os.path.exists(prompt_path):
+            with open(prompt_path, "r", encoding="utf-8") as f:
+                return f.read()
+        return ""
 
     @property
     def metadata(self) -> AgentMetadata:
         return AgentMetadata(
             name="PolicyDecisionAgent",
-            description="Applies EC_POLICY_V2 business logic rules on evidence handoffs to evaluate primary issue, secondary issues, evidence IDs, and financial resolutions.",
+            description="Applies EC_POLICY_V2 business logic rules on evidence handoffs to evaluate primary issue, secondary issues, evidence IDs, and financial resolutions under Zero-Trust policy.",
             capabilities=[
                 "policy_v2_assessment",
                 "root_cause_ranking",
@@ -23,7 +34,7 @@ class PolicyDecisionAgent(BaseAgent):
 
     async def can_handle(self, query: str, context: Optional[Dict[str, Any]] = None) -> float:
         q_lower = query.lower()
-        keywords = ["policy", "decision", "claim", "refund", "responsibility", "root cause", "evidence"]
+        keywords = ["policy", "decision", "claim", "refund", "responsibility", "root cause", "evidence", "zero-trust"]
         matches = sum(1 for k in keywords if k in q_lower)
         return min(0.4 + (matches * 0.2), 0.95)
 
@@ -43,7 +54,7 @@ class PolicyDecisionAgent(BaseAgent):
         reconciled = payment.get("reconciled")
         freight_total_brl = payment.get("freight_total_brl", 0.0)
 
-        # Primary Issue Assessment according to EC_POLICY_V2 priority order
+        # Primary Issue Assessment according to EC_POLICY_V2 priority order (Zero-Trust Data Verification)
         primary_issue = "unsupported_late_claim"
         responsible_parties = [{"party_type": "none", "party_id": "NONE"}]
         recommended_refund_brl = 0.0
