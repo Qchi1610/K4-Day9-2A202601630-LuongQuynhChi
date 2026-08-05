@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     MONGODB_DB_NAME: str = "onboarding_db"
 
     # LLM Configuration
-    LLM_PROVIDER: Literal["openai", "openrouter", "openroute", "ollama", "nvidia"] = "openrouter"
+    LLM_PROVIDER: Literal["openai", "openrouter", "openroute", "ollama", "nvidia"] = "nvidia"
     OPENAI_API_KEY: Optional[str] = None
     OPENROUTER_API_KEY: Optional[str] = None
     NVIDIA_API_KEY: Optional[str] = None
@@ -51,7 +51,11 @@ class Settings(BaseSettings):
     TROUBLESHOOTING_CONFIDENCE_THRESHOLD: float = 0.70
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=[
+            ".env",
+            os.path.join(os.path.dirname(__file__), "..", "..", ".env"),
+            os.path.join(os.path.dirname(__file__), "..", ".env"),
+        ],
         env_file_encoding="utf-8",
         extra="ignore"
     )

@@ -14,13 +14,18 @@ class NVIDIAProvider(BaseLLMProvider):
     def __init__(self, api_key: Optional[str] = None, model_name: Optional[str] = None):
         self.api_key = api_key or settings.NVIDIA_API_KEY or settings.OPENROUTER_API_KEY or settings.OPENAI_API_KEY
         if not self.api_key:
-            raise LLMProviderException("nvidia", "NVIDIA_API_KEY or OPENROUTER_API_KEY is not configured.")
-        self.model_name = model_name or settings.MODEL_NAME
+            raise LLMProviderException("nvidia", "NVIDIA_API_KEY is not configured.")
+        
+        target_model = model_name or settings.MODEL_NAME
+        if not target_model or "gpt-" in target_model.lower() or "claude-" in target_model.lower():
+            target_model = "nvidia/nvidia-nemotron-nano-9b-v2"
+        self.model_name = target_model
+        
         self.embedding_model = settings.EMBEDDING_MODEL
         self.client = AsyncOpenAI(
             api_key=self.api_key,
             base_url="https://integrate.api.nvidia.com/v1",
-            timeout=15.0,
+            timeout=45.0,
         )
 
     async def generate(
@@ -42,8 +47,13 @@ class NVIDIAProvider(BaseLLMProvider):
                 temperature=temperature,
                 max_tokens=max_tokens,
             )
-            return response.choices[0].message.content or ""
+            msg = response.choices[0].message
+            content = msg.content
+            if not content or content.strip() == "":
+                content = getattr(msg, "reasoning_content", None) or getattr(msg, "reasoning", "")
+            return (content or "").strip()
         except Exception as e:
+            print(f"[NVIDIAProvider Error] API Call failed: {e}")
             return (
                 f"### Process & Onboarding Guidance\n"
                 f"**Step 1**: Initiate customer intake and verify dealership record.\n"

@@ -6,6 +6,8 @@ except ImportError:
     AsyncIOMotorDatabase = None
     HAS_MOTOR = False
 
+from typing import Any, Dict, Optional
+
 from app.core.config import settings
 from app.core.logging import logger
 

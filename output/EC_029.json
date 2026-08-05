@@ -21,8 +21,8 @@
       "b69321fb7d3000994c5a2b55c4f3cb01:2"
     ],
     "seller_ids": [
-      "4a3ca9315b744ce9f8e9374361493884",
-      "d20b021d3efdf267a402c402a48ea64b"
+      "d20b021d3efdf267a402c402a48ea64b",
+      "4a3ca9315b744ce9f8e9374361493884"
     ],
     "payment_ids": [
       "b69321fb7d3000994c5a2b55c4f3cb01:1",
@@ -37,12 +37,12 @@
   },
   "product_context": {
     "product_ids": [
-      "b7605b5b483063d12bd90a772bff9d21",
-      "8adde8ed66e628e94f29b9832156ab08"
+      "8adde8ed66e628e94f29b9832156ab08",
+      "b7605b5b483063d12bd90a772bff9d21"
     ],
     "category_names": [
-      "cama_mesa_banho",
-      "moveis_decoracao"
+      "moveis_decoracao",
+      "cama_mesa_banho"
     ]
   },
   "delivery_analysis": {
