@@ -35,8 +35,8 @@
   },
   "product_context": {
     "product_ids": [
-      "9c6d5d4aaea6884ee19112567691a1da",
-      "11a10f5773a7da9fb352dfe9e119803b"
+      "11a10f5773a7da9fb352dfe9e119803b",
+      "9c6d5d4aaea6884ee19112567691a1da"
     ],
     "category_names": [
       "cama_mesa_banho"
@@ -72,8 +72,8 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "credit_card",
-      "voucher"
+      "voucher",
+      "credit_card"
     ]
   },
   "root_cause_analysis": {
