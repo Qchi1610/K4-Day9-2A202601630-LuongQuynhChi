@@ -1,0 +1,22 @@
+# Environment & Secret files
+.env
+backend/.env
+*.env
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Vector DB & Data indexes
+data/faiss_index*
+*.index
+*.pkl
+
+# OS files
+.DS_Store
+Thumbs.db
